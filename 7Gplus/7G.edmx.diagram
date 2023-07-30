@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af33bc3b2d0d4d42b16135aee0d3794c" Name="Diagram1">
+        <EntityTypeShape EntityType="GModel.tFuturo" Width="1.625" PointX="0.75" PointY="1.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="GModel.tPppsEuroUsd" Width="1.5" PointX="3.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="GModel.tCPIu" Width="1.5" PointX="3.375" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="GModel.tCPIeu" Width="1.5" PointX="5" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="GModel.tbondUS10Y" Width="1.5" PointX="5.125" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="GModel.tbondEU10Y" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GModel.tFxEURUSD" Width="1.5" PointX="3.375" PointY="5.5" />
+        <EntityTypeShape EntityType="GModel.tZoneTime" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="GModel.tpikitosT" Width="1.5" PointX="7.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="GModel.tConsola" Width="1.5" PointX="7.375" PointY="5.75" />
+        <EntityTypeShape EntityType="GModel.tPppsEuroUsdDaily" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="GModel.tEURUSDfed" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="GModel.tGlobex" Width="1.875" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="GModel.sysdiagrams" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GModel.tFuturosCMEquotes" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="GModel.tOpcionesCMEquotes" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="GModel.tCotizacionSpot" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GModel.LineaTendeciaFuturos" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="GModel.ResumenOpciones" Width="1.5" PointX="0.75" PointY="2.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

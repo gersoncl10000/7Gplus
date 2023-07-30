@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LineaTendeciaFuturos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="x" Type="float" />
+          <Property Name="y" Type="float" />
+          <Property Name="Acttualizacion" Type="datetime" />
+          <Property Name="ActtualizacionCME" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ResumenOpciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="LimiteCompras" Type="float" />
+          <Property Name="LimiteVentas" Type="float" />
+          <Property Name="CotizacionFuturos" Type="float" />
+          <Property Name="SumaCall" Type="float" />
+          <Property Name="SumaPut" Type="float" />
+          <Property Name="Acttualizacion" Type="datetime" />
+          <Property Name="ActtualizacionCME" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbondEU10Y">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="value" Type="float" />
+          <Property Name="OBS_STATUS" Type="nchar" MaxLength="1" />
+          <Property Name="database_code" Type="varchar" MaxLength="50" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbondUS10Y">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="value" Type="float" />
+          <Property Name="database_code" Type="varchar" MaxLength="50" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tConsola">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Linea" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Objeto" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tCotizacionSpot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Close" Type="float" Nullable="false" />
+          <Property Name="Change" Type="datetime" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="VolUSD" Type="float" />
+          <Property Name="VolEUR" Type="float" />
+        </EntityType>
+        <EntityType Name="tCPIeu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="value" Type="float" />
+          <Property Name="OBS_STATUS" Type="nchar" MaxLength="1" />
+          <Property Name="database_code" Type="varchar" MaxLength="50" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tCPIus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="value" Type="float" />
+          <Property Name="database_code" Type="varchar" MaxLength="50" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tEURUSDfed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Value" Type="float" />
+          <Property Name="database_code" Type="varchar" MaxLength="50" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tFuturos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="open" Type="float" />
+          <Property Name="high" Type="float" />
+          <Property Name="low" Type="float" />
+          <Property Name="last" Type="float" />
+          <Property Name="change" Type="float" />
+          <Property Name="settle" Type="float" />
+          <Property Name="volume" Type="float" />
+          <Property Name="previousDayOpenInterest" Type="float" />
+          <Property Name="database_code" Type="varchar" MaxLength="10" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="10" />
+          <Property Name="endContractDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tFuturosCMEquotes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="date" />
+          <Property Name="Last" Type="float" />
+          <Property Name="Change" Type="float" />
+          <Property Name="PriorSettle" Type="float" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="HiLimit" Type="float" />
+          <Property Name="LowLimit" Type="float" />
+          <Property Name="Updated" Type="datetime" />
+          <Property Name="Symbol" Type="varchar" MaxLength="10" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="tFxEURUSD">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="open" Type="float" />
+          <Property Name="high" Type="float" />
+          <Property Name="low" Type="float" />
+          <Property Name="close" Type="float" />
+          <Property Name="volume" Type="float" />
+        </EntityType>
+        <EntityType Name="tGlobex">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="endContractDate" Type="datetime" />
+          <Property Name="Last" Type="float" />
+          <Property Name="Change" Type="float" />
+          <Property Name="PriorSettle" Type="float" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="HiLowLimit" Type="float" />
+        </EntityType>
+        <EntityType Name="tOpcionesCMEquotes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="date" />
+          <Property Name="Last" Type="float" />
+          <Property Name="Change" Type="float" />
+          <Property Name="PriorSettle" Type="float" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="HiLimit" Type="float" />
+          <Property Name="LowLimit" Type="float" />
+          <Property Name="StrikePrice" Type="float" />
+          <Property Name="Updated" Type="datetime" />
+          <Property Name="Symbol" Type="varchar" MaxLength="10" />
+          <Property Name="date" Type="date" />
+          <Property Name="Tipo" Type="nchar" MaxLength="10" />
+          <Property Name="ExpirationMonth" Type="date" />
+        </EntityType>
+        <EntityType Name="tpikitosT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" />
+          <Property Name="pFXclose" Type="float" />
+          <Property Name="pCMEclose" Type="float" />
+          <Property Name="pPPAclose" Type="float" />
+          <Property Name="diasCicloFuturos" Type="float" />
+          <Property Name="diasCicloPPA" Type="float" />
+          <Property Name="tipoCilcoFuturos" Type="float" />
+          <Property Name="tipoCilcoPPA" Type="float" />
+          <Property Name="pikito" Type="float" />
+          <Property Name="Rpikito" Type="float" />
+          <Property Name="pCMEproy" Type="float" />
+          <Property Name="pPPAproy" Type="float" />
+          <Property Name="TcProm" Type="float" />
+          <Property Name="TcCorte" Type="float" />
+        </EntityType>
+        <EntityType Name="tPppsEuroUsd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Value" Type="float" />
+          <Property Name="database_code" Type="varchar" MaxLength="50" />
+          <Property Name="dataset_code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tPppsEuroUsdDaily">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Value" Type="float" />
+        </EntityType>
+        <EntityType Name="tZoneTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tabla" Type="varchar" MaxLength="50" />
+          <Property Name="ZonaHorariaGMT" Type="varchar" MaxLength="50" />
+          <Property Name="CodZonaHoraria" Type="nchar" MaxLength="10" />
+          <Property Name="HoraPublicacionLocal" Type="time" Precision="7" />
+          <Property Name="HoraPublicacionGMT" Type="time" Precision="7" />
+        </EntityType>
+        <EntityContainer Name="GModelStoreContainer">
+          <EntitySet Name="LineaTendeciaFuturos" EntityType="Self.LineaTendeciaFuturos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResumenOpciones" EntityType="Self.ResumenOpciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbondEU10Y" EntityType="Self.tbondEU10Y" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbondUS10Y" EntityType="Self.tbondUS10Y" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tConsola" EntityType="Self.tConsola" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCotizacionSpot" EntityType="Self.tCotizacionSpot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCPIeu" EntityType="Self.tCPIeu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCPIus" EntityType="Self.tCPIus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tEURUSDfed" EntityType="Self.tEURUSDfed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFuturos" EntityType="Self.tFuturos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFuturosCMEquotes" EntityType="Self.tFuturosCMEquotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFxEURUSD" EntityType="Self.tFxEURUSD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tGlobex" EntityType="Self.tGlobex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOpcionesCMEquotes" EntityType="Self.tOpcionesCMEquotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tpikitosT" EntityType="Self.tpikitosT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPppsEuroUsd" EntityType="Self.tPppsEuroUsd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPppsEuroUsdDaily" EntityType="Self.tPppsEuroUsdDaily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tZoneTime" EntityType="Self.tZoneTime" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tFuturo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="open" Type="Double" />
+          <Property Name="high" Type="Double" />
+          <Property Name="low" Type="Double" />
+          <Property Name="last" Type="Double" />
+          <Property Name="change" Type="Double" />
+          <Property Name="settle" Type="Double" />
+          <Property Name="volume" Type="Double" />
+          <Property Name="previousDayOpenInterest" Type="Double" />
+          <Property Name="database_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="endContractDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="GEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tFuturos" EntityType="Self.tFuturo" />
+          <EntitySet Name="tPppsEuroUsds" EntityType="GModel.tPppsEuroUsd" />
+          <EntitySet Name="tCPIus" EntityType="GModel.tCPIu" />
+          <EntitySet Name="tCPIeux" EntityType="GModel.tCPIeu" />
+          <EntitySet Name="tbondUS10Y" EntityType="GModel.tbondUS10Y" />
+          <EntitySet Name="tbondEU10Y" EntityType="GModel.tbondEU10Y" />
+          <EntitySet Name="tFxEURUSDs" EntityType="GModel.tFxEURUSD" />
+          <EntitySet Name="tZoneTimes" EntityType="GModel.tZoneTime" />
+          <EntitySet Name="tpikitosT" EntityType="GModel.tpikitosT" />
+          <EntitySet Name="tConsola" EntityType="GModel.tConsola" />
+          <EntitySet Name="tPppsEuroUsdDaily" EntityType="GModel.tPppsEuroUsdDaily" />
+          <EntitySet Name="tEURUSDfed" EntityType="GModel.tEURUSDfed" />
+          <EntitySet Name="tGlobex" EntityType="GModel.tGlobex" />
+          <EntitySet Name="sysdiagrams" EntityType="GModel.sysdiagrams" />
+          <EntitySet Name="tFuturosCMEquotes" EntityType="GModel.tFuturosCMEquotes" />
+          <EntitySet Name="tOpcionesCMEquotes" EntityType="GModel.tOpcionesCMEquotes" />
+          <EntitySet Name="tCotizacionSpot" EntityType="GModel.tCotizacionSpot" />
+          <EntitySet Name="LineaTendeciaFuturos" EntityType="GModel.LineaTendeciaFuturos" />
+          <EntitySet Name="ResumenOpciones" EntityType="GModel.ResumenOpciones" />
+        </EntityContainer>
+        <EntityType Name="tPppsEuroUsd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Value" Type="Double" />
+          <Property Name="database_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tCPIu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="value" Type="Double" />
+          <Property Name="database_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tCPIeu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="value" Type="Double" />
+          <Property Name="database_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OBS_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbondUS10Y">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="value" Type="Double" />
+          <Property Name="database_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbondEU10Y">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="value" Type="Double" />
+          <Property Name="OBS_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="database_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tFxEURUSD">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="open" Type="Double" />
+          <Property Name="high" Type="Double" />
+          <Property Name="low" Type="Double" />
+          <Property Name="close" Type="Double" />
+          <Property Name="volume" Type="Double" />
+        </EntityType>
+        <EntityType Name="tZoneTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tabla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZonaHorariaGMT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodZonaHoraria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="HoraPublicacionLocal" Type="Time" Precision="7" />
+          <Property Name="HoraPublicacionGMT" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="tpikitosT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pFXclose" Type="Double" />
+          <Property Name="pCMEclose" Type="Double" />
+          <Property Name="pPPAclose" Type="Double" />
+          <Property Name="diasCicloFuturos" Type="Double" />
+          <Property Name="diasCicloPPA" Type="Double" />
+          <Property Name="tipoCilcoFuturos" Type="Double" />
+          <Property Name="tipoCilcoPPA" Type="Double" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="pikito" Type="Double" />
+          <Property Name="Rpikito" Type="Double" />
+          <Property Name="pCMEproy" Type="Double" />
+          <Property Name="pPPAproy" Type="Double" />
+          <Property Name="TcProm" Type="Double" />
+          <Property Name="TcCorte" Type="Double" />
+        </EntityType>
+        <EntityType Name="tConsola">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Linea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Objeto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tPppsEuroUsdDaily">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Value" Type="Double" />
+        </EntityType>
+        <EntityType Name="tEURUSDfed">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Value" Type="Double" />
+          <Property Name="database_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataset_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tGlobex">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="endContractDate" Type="DateTime" Precision="3" />
+          <Property Name="Last" Type="Double" />
+          <Property Name="Change" Type="Double" />
+          <Property Name="PriorSettle" Type="Double" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="HiLowLimit" Type="Double" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tFuturosCMEquotes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="DateTime" Precision="0" />
+          <Property Name="Last" Type="Double" />
+          <Property Name="Change" Type="Double" />
+          <Property Name="PriorSettle" Type="Double" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="HiLimit" Type="Double" />
+          <Property Name="LowLimit" Type="Double" />
+          <Property Name="Updated" Type="DateTime" Precision="3" />
+          <Property Name="Symbol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tOpcionesCMEquotes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="DateTime" Precision="0" />
+          <Property Name="Last" Type="Double" />
+          <Property Name="Change" Type="Double" />
+          <Property Name="PriorSettle" Type="Double" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="HiLimit" Type="Double" />
+          <Property Name="LowLimit" Type="Double" />
+          <Property Name="StrikePrice" Type="Double" />
+          <Property Name="Updated" Type="DateTime" Precision="3" />
+          <Property Name="Symbol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="Tipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExpirationMonth" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tCotizacionSpot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Close" Type="Double" Nullable="false" />
+          <Property Name="Change" Type="DateTime" Precision="3" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="VolUSD" Type="Double" />
+          <Property Name="VolEUR" Type="Double" />
+        </EntityType>
+        <EntityType Name="LineaTendeciaFuturos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="x" Type="Double" />
+          <Property Name="y" Type="Double" />
+          <Property Name="Acttualizacion" Type="DateTime" Precision="3" />
+          <Property Name="ActtualizacionCME" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ResumenOpciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="LimiteCompras" Type="Double" />
+          <Property Name="LimiteVentas" Type="Double" />
+          <Property Name="CotizacionFuturos" Type="Double" />
+          <Property Name="SumaCall" Type="Double" />
+          <Property Name="SumaPut" Type="Double" />
+          <Property Name="Acttualizacion" Type="DateTime" Precision="3" />
+          <Property Name="ActtualizacionCME" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GModelStoreContainer" CdmEntityContainer="GEntities">
+          <EntitySetMapping Name="tFuturos">
+            <EntityTypeMapping TypeName="GModel.tFuturo">
+              <MappingFragment StoreEntitySet="tFuturos">
+                <ScalarProperty Name="endContractDate" ColumnName="endContractDate" />
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="open" ColumnName="open" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="last" ColumnName="last" />
+                <ScalarProperty Name="change" ColumnName="change" />
+                <ScalarProperty Name="settle" ColumnName="settle" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="previousDayOpenInterest" ColumnName="previousDayOpenInterest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPppsEuroUsds">
+            <EntityTypeMapping TypeName="GModel.tPppsEuroUsd">
+              <MappingFragment StoreEntitySet="tPppsEuroUsd">
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCPIus">
+            <EntityTypeMapping TypeName="GModel.tCPIu">
+              <MappingFragment StoreEntitySet="tCPIus">
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCPIeux">
+            <EntityTypeMapping TypeName="GModel.tCPIeu">
+              <MappingFragment StoreEntitySet="tCPIeu">
+                <ScalarProperty Name="OBS_STATUS" ColumnName="OBS_STATUS" />
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbondUS10Y">
+            <EntityTypeMapping TypeName="GModel.tbondUS10Y">
+              <MappingFragment StoreEntitySet="tbondUS10Y">
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbondEU10Y">
+            <EntityTypeMapping TypeName="GModel.tbondEU10Y">
+              <MappingFragment StoreEntitySet="tbondEU10Y">
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="OBS_STATUS" ColumnName="OBS_STATUS" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFxEURUSDs">
+            <EntityTypeMapping TypeName="GModel.tFxEURUSD">
+              <MappingFragment StoreEntitySet="tFxEURUSD">
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="close" ColumnName="close" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="open" ColumnName="open" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tZoneTimes">
+            <EntityTypeMapping TypeName="GModel.tZoneTime">
+              <MappingFragment StoreEntitySet="tZoneTime">
+                <ScalarProperty Name="HoraPublicacionGMT" ColumnName="HoraPublicacionGMT" />
+                <ScalarProperty Name="HoraPublicacionLocal" ColumnName="HoraPublicacionLocal" />
+                <ScalarProperty Name="CodZonaHoraria" ColumnName="CodZonaHoraria" />
+                <ScalarProperty Name="ZonaHorariaGMT" ColumnName="ZonaHorariaGMT" />
+                <ScalarProperty Name="Tabla" ColumnName="Tabla" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tpikitosT">
+            <EntityTypeMapping TypeName="GModel.tpikitosT">
+              <MappingFragment StoreEntitySet="tpikitosT">
+                <ScalarProperty Name="TcCorte" ColumnName="TcCorte" />
+                <ScalarProperty Name="TcProm" ColumnName="TcProm" />
+                <ScalarProperty Name="pPPAproy" ColumnName="pPPAproy" />
+                <ScalarProperty Name="pCMEproy" ColumnName="pCMEproy" />
+                <ScalarProperty Name="Rpikito" ColumnName="Rpikito" />
+                <ScalarProperty Name="pikito" ColumnName="pikito" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="tipoCilcoPPA" ColumnName="tipoCilcoPPA" />
+                <ScalarProperty Name="tipoCilcoFuturos" ColumnName="tipoCilcoFuturos" />
+                <ScalarProperty Name="diasCicloPPA" ColumnName="diasCicloPPA" />
+                <ScalarProperty Name="diasCicloFuturos" ColumnName="diasCicloFuturos" />
+                <ScalarProperty Name="pPPAclose" ColumnName="pPPAclose" />
+                <ScalarProperty Name="pCMEclose" ColumnName="pCMEclose" />
+                <ScalarProperty Name="pFXclose" ColumnName="pFXclose" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tConsola">
+            <EntityTypeMapping TypeName="GModel.tConsola">
+              <MappingFragment StoreEntitySet="tConsola">
+                <ScalarProperty Name="Objeto" ColumnName="Objeto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Linea" ColumnName="Linea" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPppsEuroUsdDaily">
+            <EntityTypeMapping TypeName="GModel.tPppsEuroUsdDaily">
+              <MappingFragment StoreEntitySet="tPppsEuroUsdDaily">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tEURUSDfed">
+            <EntityTypeMapping TypeName="GModel.tEURUSDfed">
+              <MappingFragment StoreEntitySet="tEURUSDfed">
+                <ScalarProperty Name="dataset_code" ColumnName="dataset_code" />
+                <ScalarProperty Name="database_code" ColumnName="database_code" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tGlobex">
+            <EntityTypeMapping TypeName="GModel.tGlobex">
+              <MappingFragment StoreEntitySet="tGlobex">
+                <ScalarProperty Name="HiLowLimit" ColumnName="HiLowLimit" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="PriorSettle" ColumnName="PriorSettle" />
+                <ScalarProperty Name="Change" ColumnName="Change" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="endContractDate" ColumnName="endContractDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="int" ColumnName="int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFuturosCMEquotes">
+            <EntityTypeMapping TypeName="GModel.tFuturosCMEquotes">
+              <MappingFragment StoreEntitySet="tFuturosCMEquotes">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="LowLimit" ColumnName="LowLimit" />
+                <ScalarProperty Name="HiLimit" ColumnName="HiLimit" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="PriorSettle" ColumnName="PriorSettle" />
+                <ScalarProperty Name="Change" ColumnName="Change" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOpcionesCMEquotes">
+            <EntityTypeMapping TypeName="GModel.tOpcionesCMEquotes">
+              <MappingFragment StoreEntitySet="tOpcionesCMEquotes">
+                <ScalarProperty Name="ExpirationMonth" ColumnName="ExpirationMonth" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="StrikePrice" ColumnName="StrikePrice" />
+                <ScalarProperty Name="LowLimit" ColumnName="LowLimit" />
+                <ScalarProperty Name="HiLimit" ColumnName="HiLimit" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="PriorSettle" ColumnName="PriorSettle" />
+                <ScalarProperty Name="Change" ColumnName="Change" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCotizacionSpot">
+            <EntityTypeMapping TypeName="GModel.tCotizacionSpot">
+              <MappingFragment StoreEntitySet="tCotizacionSpot">
+                <ScalarProperty Name="VolEUR" ColumnName="VolEUR" />
+                <ScalarProperty Name="VolUSD" ColumnName="VolUSD" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="Change" ColumnName="Change" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineaTendeciaFuturos">
+            <EntityTypeMapping TypeName="GModel.LineaTendeciaFuturos">
+              <MappingFragment StoreEntitySet="LineaTendeciaFuturos">
+                <ScalarProperty Name="ActtualizacionCME" ColumnName="ActtualizacionCME" />
+                <ScalarProperty Name="Acttualizacion" ColumnName="Acttualizacion" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResumenOpciones">
+            <EntityTypeMapping TypeName="GModel.ResumenOpciones">
+              <MappingFragment StoreEntitySet="ResumenOpciones">
+                <ScalarProperty Name="ActtualizacionCME" ColumnName="ActtualizacionCME" />
+                <ScalarProperty Name="Acttualizacion" ColumnName="Acttualizacion" />
+                <ScalarProperty Name="SumaPut" ColumnName="SumaPut" />
+                <ScalarProperty Name="SumaCall" ColumnName="SumaCall" />
+                <ScalarProperty Name="CotizacionFuturos" ColumnName="CotizacionFuturos" />
+                <ScalarProperty Name="LimiteVentas" ColumnName="LimiteVentas" />
+                <ScalarProperty Name="LimiteCompras" ColumnName="LimiteCompras" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

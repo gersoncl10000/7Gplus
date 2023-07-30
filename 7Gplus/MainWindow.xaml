@@ -1,0 +1,1054 @@
+﻿<Window x:Class="_7Gplus.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_7Gplus"
+        
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="7Gplus" Height="Auto" Width="Auto"
+        WindowState="Maximized"
+        >
+    
+    
+    <Window.Resources>
+        
+    </Window.Resources>
+    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--Panel Primera Columna -->
+        <Grid Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel  Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <TextBlock Text="7Gplus" Style="{StaticResource MaterialDesignDisplay2TextBlock}" Foreground="Red" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+                <TextBlock Text="Sistema Automatizado de Pronostico Estadistico" Width="Auto" Height="Auto" Margin="10,0,20,0" VerticalAlignment="Bottom"/>
+            </StackPanel>
+
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Cotizacion" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="10,0,0,5"/>
+                    <ContentControl Grid.Row="0"  x:Name="visorCotizaciones" />
+                    <TextBlock Text="Macroeconomicas" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="10,0,0,5"/>
+                    <ContentControl Grid.Row="0"  x:Name="visorMacroEconomicas" />
+                </StackPanel>
+
+
+
+
+
+
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,20,0,5">
+                    <Button  x:Name="btnGenerarPPAdaily" Style="{StaticResource MaterialDesignFlatButton}" Click="GenerarPPAdaily_click" Content="Generar PPA Daily" Margin="20,0,0,0"/>
+                    <Button  x:Name="btnDescargarCME"    Style="{StaticResource MaterialDesignFlatButton}" Click="DescargarCME_click" Content="Descargar CME" Margin="20,0,0,0"/>
+                    <Button  x:Name="btnReadSchemasXML"  Style="{StaticResource MaterialDesignFlatButton}" Click="btnReadSchemasXML_Click" Content="Read Schema XML" Margin="20,0,0,0"/>
+                    <Button  x:Name="btnCalcularPikitos" Style="{StaticResource MaterialDesignFlatButton}" Click="btnCalcularPikitos_Click" Content="Calcular Pikitos" Margin="20,0,0,0"/>
+                    <Button  x:Name="btnWriteCSV"        Style="{StaticResource MaterialDesignFlatButton}" Click="btnWriteCSV_Click" Content="Generar Archivo .CSV" Margin="20,0,0,0"/>
+                </StackPanel>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Vertical" Width="300">
+                    <TextBlock  x:Name="verbox" Height="20" />
+                    <RichTextBox x:Name="richText"  IsReadOnly="True" VerticalScrollBarVisibility="Visible" Height="100" >
+                        <RichTextBox.Resources>
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0"/>
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
+                </StackPanel>
+                
+            </Grid>
+        </Grid>
+        
+        <!--Panel 2da Columna -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel  Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="0 12 8 0" Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedLightButton" Click="btnGraficoPPA_Click" >
+                                PPA
+                            </Button>
+
+                        </StackPanel>
+                        <ContentControl x:Name="visorGraficos" Height="Auto"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0"  Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0,15,0,15"> Opciones</TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ultima Actualizacion:"/>
+                            <TextBlock x:Name="txblActtualizacion" Margin="10,0,0,0" />
+                            <TextBlock Text="Ultima Actualizacion CME:"/>
+                            <TextBlock x:Name="txblActtualizacionCME" Margin="10,0,0,0" />
+                        </StackPanel>
+                        <DataGrid x:Name="optionCMEDataGrid" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="dgcolMonth" Width="Auto" CellStyle="{StaticResource fondoDataGrid}" Binding="{Binding Month, StringFormat='MM-yyyy'}" FontSize="8"/>
+                                <DataGridTextColumn x:Name="dgcolStrikePrice" Width="Auto" CellStyle="{StaticResource fondoDataGrid}" Binding="{Binding StrikePrice}" FontSize="8"  />
+
+                                <DataGridTemplateColumn x:Name="B10" Header="" CellStyle="{StaticResource callputCellColordeFondoB10}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB10" Text="{Binding TipoMB10}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B10,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B9" Header="" CellStyle="{StaticResource callputCellColordeFondoB9}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB9" Text="{Binding TipoMB9}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B9,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B8" Header="" CellStyle="{StaticResource callputCellColordeFondoB8}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB8" Text="{Binding TipoMB8}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B8,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B7" Header="" CellStyle="{StaticResource callputCellColordeFondoB7}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB7" Text="{Binding TipoMB7}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B7,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B6" Header="" CellStyle="{StaticResource callputCellColordeFondoB6}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB6" Text="{Binding TipoMB6}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B6,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B5" Header="" CellStyle="{StaticResource callputCellColordeFondoB5}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB5" Text="{Binding TipoMB5}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B5,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B4" Header="" CellStyle="{StaticResource callputCellColordeFondoB4}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB4" Text="{Binding TipoMB4}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B4,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B3" Header="" CellStyle="{StaticResource callputCellColordeFondoB3}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB3" Text="{Binding TipoMB3}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B3,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B2" Header="" CellStyle="{StaticResource callputCellColordeFondoB2}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB2" Text="{Binding TipoMB2}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B2,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B1" Header="" CellStyle="{StaticResource callputCellColordeFondoB1}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB1" Text="{Binding TipoMB1}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B1,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+
+
+                                <DataGridTemplateColumn x:Name="M" Header="" CellStyle="{StaticResource callputCellColordeFondo}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipo" Text="{Binding TipoM}" FontSize="8" 
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding M,StringFormat='N5'}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                                <DataGridTemplateColumn x:Name="AL1" Header="" CellStyle="{StaticResource callputCellColordeFondoAL1}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL1" Text="{Binding TipoMAL1}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL1,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL2}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL2" Text="{Binding TipoMAL2}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL2,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL3" Header="" CellStyle="{StaticResource callputCellColordeFondoAL3}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL3" Text="{Binding TipoMAL3}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL3,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL4" Header="" CellStyle="{StaticResource callputCellColordeFondoAL4}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL4" Text="{Binding TipoMAL4}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL4,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL5" Header="" CellStyle="{StaticResource callputCellColordeFondoAL5}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL5" Text="{Binding TipoMAL5}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL5,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL6" Header="" CellStyle="{StaticResource callputCellColordeFondoAL6}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL6" Text="{Binding TipoMAL6}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL6,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL7" Header="" CellStyle="{StaticResource callputCellColordeFondoAL7}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL7" Text="{Binding TipoMAL7}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL7,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL8" Header="" CellStyle="{StaticResource callputCellColordeFondoAL8}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL8" Text="{Binding TipoMAL8}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL8,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL9" Header="" CellStyle="{StaticResource callputCellColordeFondoAL9}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL9" Text="{Binding TipoMAL9}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL9,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL10" Header="" CellStyle="{StaticResource callputCellColordeFondoAL10}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL10" Text="{Binding TipoMAL10}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL10,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+
+                            </DataGrid.Columns>
+                            
+
+                        </DataGrid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ultima Actualizacion:"/>
+                            <TextBlock x:Name="txblActtualizacionopp2" Margin="10,0,0,0" />
+                            <TextBlock Text="Ultima Actualizacion CME:"/>
+                            <TextBlock x:Name="txblActtualizacionCMEopp2" Margin="10,0,0,0" />
+                        </StackPanel>
+                        <DataGrid x:Name="optionCMEDataGridopp2" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="dgcolMonthopp2" Width="Auto" CellStyle="{StaticResource fondoDataGrid}" Binding="{Binding Month, StringFormat='MM-yyyy'}" FontSize="8"/>
+                                <DataGridTextColumn x:Name="dgcolStrikePriceopp2" Width="Auto" CellStyle="{StaticResource fondoDataGrid}" Binding="{Binding StrikePrice}" FontSize="8"  />
+
+                                <DataGridTemplateColumn x:Name="B10opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB10}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB10opp2" Text="{Binding TipoMB10}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B10,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B9opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB9}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB9opp2" Text="{Binding TipoMB9}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B9,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B8opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB8}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB8opp2" Text="{Binding TipoMB8}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B8,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B7opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB7}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB7opp2" Text="{Binding TipoMB7}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B7,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B6opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB6}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB6opp2" Text="{Binding TipoMB6}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B6,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B5opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB5}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB5opp2" Text="{Binding TipoMB5}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B5,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B4opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB4}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB4opp2" Text="{Binding TipoMB4}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B4,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B3opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB3}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB3opp2" Text="{Binding TipoMB3}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B3,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B2opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB2}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB2opp2" Text="{Binding TipoMB2}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B2,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="B1opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoB1}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoB1opp2" Text="{Binding TipoMB1}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding B1,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+
+
+                                <DataGridTemplateColumn x:Name="Mopp2" Header="" CellStyle="{StaticResource callputCellColordeFondo}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoopp2" Text="{Binding TipoM}" FontSize="8" 
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding M,StringFormat='N5'}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                                <DataGridTemplateColumn x:Name="AL1opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL1}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL1opp2" Text="{Binding TipoMAL1}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL1,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL2opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL2}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL2opp2" Text="{Binding TipoMAL2}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL2,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL3opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL3}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL3opp2" Text="{Binding TipoMAL3}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL3,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL4opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL4}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL4opp2" Text="{Binding TipoMAL4}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL4,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL5opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL5}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL5opp2" Text="{Binding TipoMAL5}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL5,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL6opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL6}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL6opp2" Text="{Binding TipoMAL6}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL6,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL7opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL7}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL7opp2" Text="{Binding TipoMAL7}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL7,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL8opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL8}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL8opp2" Text="{Binding TipoMAL8}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL8,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL9opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL9}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL9opp2" Text="{Binding TipoMAL9}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL9,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn x:Name="AL10opp2" Header="" CellStyle="{StaticResource callputCellColordeFondoAL10}"  >
+                                    <DataGridTemplateColumn.CellTemplate  >
+                                        <DataTemplate  >
+                                            <StackPanel>
+                                                <TextBlock x:Name="tblTipoAL10opp2" Text="{Binding TipoMAL10}" FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource TextToBrushConverter }
+                                                           }"  />
+                                                <TextBlock Text="{Binding AL10,StringFormat='N5'}"  FontSize="8"
+                                                           Foreground="{Binding RelativeSource={RelativeSource self},
+                                                           Path=Text,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           Converter={ StaticResource NumberToBrushConverter }
+                                                           }"  />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+
+                            </DataGrid.Columns>
+
+
+                        </DataGrid>
+
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="1"  Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="0,15,0,15"> Futuros </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ultima Actualizacion:"/>
+                            <TextBlock x:Name="txbflActtualizacion" Margin="10,0,0,0" />
+                            <TextBlock Text="Ultima Actualizacion CME:"/>
+                            <TextBlock x:Name="txbflActtualizacionCME" Margin="10,0,0,0" />
+                        </StackPanel>
+                        <DataGrid x:Name="futurosCMEDataGrid" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Month" Binding="{Binding Month, StringFormat='MM-yyyy'}"/>
+                                <DataGridTextColumn Header="Date" Binding="{Binding date, StringFormat='dd/MM/yyyy'}"/>
+                                <DataGridTextColumn Header="Last" Binding="{Binding Last}"/>
+                                <DataGridTextColumn Header="Change" Binding="{Binding Change}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Foreground" Value="{Binding Change, Converter={StaticResource NumberToBrushConverter}}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="PriorSettle" Binding="{Binding PriorSettle}"/>
+                                <DataGridTextColumn Header="Open" Binding="{Binding Open}"/>
+                                <DataGridTextColumn Header="High" Binding="{Binding High}"/>
+                                <DataGridTextColumn Header="Low" Binding="{Binding Low}"/>
+                                <DataGridTextColumn Header="Volume" Binding="{Binding Volume}"/>
+                                <DataGridTextColumn Header="Updated" Binding="{Binding Updated, StringFormat='dd/MM/yyyy hh:mm'}"/>
+                            </DataGrid.Columns>
+
+
+                        </DataGrid>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+
+
+    </Grid>
+    
+</Window>

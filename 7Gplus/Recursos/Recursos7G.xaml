@@ -1,0 +1,149 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converter ="clr-namespace:_7Gplus.Clases.Converter"
+                    xmlns:local="clr-namespace:_7Gplus.Recursos">
+    <converter:numberToBrushConverter x:Key="NumberToBrushConverter"/>
+    <converter:textToBrushConverter x:Key="TextToBrushConverter"/>
+    <converter:callputToBrushConverter x:Key="CallputToBrushConverter"/>
+
+
+    <Style x:Key="fondoDataGrid" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="#eceff1"/>
+    </Style>
+
+
+
+    <Style x:Key="callputCellColordeFondo" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoM,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    
+    <Style x:Key="callputCellColordeFondoB1" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB1,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB2" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB2,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB3" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB3,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB4" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB4,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB5" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB5,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB6" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB6,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB7" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB7,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB8" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB8,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB9" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB9,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoB10" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMB10,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+
+    <Style x:Key="callputCellColordeFondoAL1" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL1,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL2" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL2,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL3" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL3,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL4" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL4,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL5" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL5,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL6" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL6,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL7" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL7,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL8" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL8,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL9" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL9,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+    <Style x:Key="callputCellColordeFondoAL10" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Background" Value="{Binding TipoMAL10,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={ StaticResource CallputToBrushConverter }
+                                            }"/>
+    </Style>
+
+
+
+
+
+</ResourceDictionary>

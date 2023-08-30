@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converter ="clr-namespace:_7Gplus.Clases.Converter"
-                    xmlns:local="clr-namespace:_7Gplus.Recursos">
+                    xmlns:local="clr-namespace:_7Gplus.re">
     <converter:numberToBrushConverter x:Key="NumberToBrushConverter"/>
     <converter:textToBrushConverter x:Key="TextToBrushConverter"/>
     <converter:callputToBrushConverter x:Key="CallputToBrushConverter"/>

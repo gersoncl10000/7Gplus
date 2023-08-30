@@ -29,7 +29,7 @@ namespace _7Gplus.Clases.Descargas
         private void ejecutarDescargar()
         {
 
-            string sBond = String.Format("https://www.quandl.com/api/v3/datasets/FRED/DGS10.xml?api_key=Kx7z33eMkxL5j29Jx1xe&&limit=300");
+            string sBond = String.Format("https://www.quandl.com/api/v3/datasets/FRED/DGS10.xml?api_key=&&limit=300");
             try
             {
                 con.escribirLinea(String.Format("Iniciando Descarga de  dataset FRED 10-Year Treasury Constant Maturity Rate"));

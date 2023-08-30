@@ -64,7 +64,7 @@ namespace _7Gplus.Clases.Descargas
                         });
 
 
-                        string CME = String.Format("https://www.quandl.com/api/v3/datasets/CME/EC{0}{1}.xml?limit=4&api_key=Kx7z33eMkxL5j29Jx1xe", mes, anno);
+                        string CME = String.Format("https://www.quandl.com/api/v3/datasets/CME/EC{0}{1}.xml?limit=4&api_key=", mes, anno);
                         try
                         {
                             XElement xmlDoc = XElement.Load(CME);

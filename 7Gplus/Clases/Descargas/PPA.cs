@@ -40,7 +40,7 @@ namespace _7Gplus.Clases.Descargas
             });
 
 
-            string CME = String.Format("https://www.quandl.com/api/v3/datasets/OECD/SNA_TABLE4_EA19_PPPGDP_CD.xml?api_key=Kx7z33eMkxL5j29Jx1xe");
+            string CME = String.Format("https://www.quandl.com/api/v3/datasets/OECD/SNA_TABLE4_EA19_PPPGDP_CD.xml?api_key=");
 
             try
             {

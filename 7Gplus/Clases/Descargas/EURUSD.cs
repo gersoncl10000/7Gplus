@@ -40,7 +40,7 @@ namespace _7Gplus.Clases.Descargas
             });
 
 
-            string CME = String.Format("https://www.quandl.com/api/v3/datasets/FED/RXI_US_N_B_EU.xml?api_key=Kx7z33eMkxL5j29Jx1xe");
+            string CME = String.Format("https://www.quandl.com/api/v3/datasets/FED/RXI_US_N_B_EU.xml?api_key=");
 
             try
             {

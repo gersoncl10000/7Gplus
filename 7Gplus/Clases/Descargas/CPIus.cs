@@ -29,7 +29,7 @@ namespace _7Gplus.Clases.Descargas
         private void ejecutarDescargar()
         {
 
-            string CPIus = String.Format("https://www.quandl.com/api/v3/datasets/FRED/CPIAUCNS.xml?api_key=Kx7z33eMkxL5j29Jx1xe");
+            string CPIus = String.Format("https://www.quandl.com/api/v3/datasets/FRED/CPIAUCNS.xml?api_key=");
             try
             {
                 XElement xmlDoc = XElement.Load(CPIus);

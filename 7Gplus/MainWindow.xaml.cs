@@ -1176,7 +1176,7 @@ namespace _7Gplus
 
         private void btnReadSchemasXML_Click(object sender, RoutedEventArgs e)
         {
-            var xmlStrg = @"https://www.quandl.com/api/v3/datasets/FRED/DGS10.xml?api_key=Kx7z33eMkxL5j29Jx1xe";
+            var xmlStrg = @"https://www.quandl.com/api/v3/datasets/FRED/DGS10.xml?api_key=";
 
             var xmlDoc = XElement.Load(xmlStrg);
 
